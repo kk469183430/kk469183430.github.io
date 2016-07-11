@@ -84,27 +84,27 @@
 
 
 
-<meta name="description" content="放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。">
+<meta name="description" content="近期笔者机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="手把手教你零基础利用无线网卡搭建ad-hoc局域网">
 <meta property="og:url" content="http://yoursite.com/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/index.html">
 <meta property="og:site_name" content="A Safe Place">
-<meta property="og:description" content="放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。">
-<meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE9670b497de2ea33c504461d42ac5de55/1392">
-<meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCEc2009421e9369157826b1b4179000811/1394">
-<meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCEfe9c90237f68c11ac46e41fff010677f/1387">
-<meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCEc431aa4ec877bbec1dfd1bdb2051ba91/1385">
-<meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCEa373796ca0740c0fbdb79f8f450edbf6/1390">
-<meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE96d09765ade11afbad065e9099c55257/1402">
-<meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE3104832f091f270bd858d62ad7200a34/1404">
-<meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE38798a1c62004a43cae1e94093a09aeb/1400">
-<meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE12f0348233cfc28676585623ae1be82d/1406">
-<meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE4d2a627c23a17b30ce8374b330f323bd/1408">
-<meta property="og:updated_time" content="2016-07-11T10:52:24.355Z">
+<meta property="og:description" content="近期笔者机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/75e774d3jw1f5q6k4n4pqj20wp089q6z.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/75e774d3jw1f5q6ks4m2tj20jq02w3zu.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/75e774d3jw1f5q6ifqzwhj20iy011q3e.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/75e774d3jw1f5q6gv284vj20mg0a0mzn.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/75e774d3jw1f5q6j6i453j20k501h3zd.jpg">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/75e774d3jw1f5q6hoehdij20ie0ip7ee.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/75e774d3jw1f5q6m7xl85j20wq09z43a.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/75e774d3jw1f5q6l8phqkj20m503q76f.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/75e774d3jw1f5q6lm1ytdj20fl02wtah.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/75e774d3jw1f5q6lz3de4j20fz02vwg9.jpg">
+<meta property="og:updated_time" content="2016-07-11T11:18:49.484Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="手把手教你零基础利用无线网卡搭建ad-hoc局域网">
-<meta name="twitter:description" content="放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。">
-<meta name="twitter:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE9670b497de2ea33c504461d42ac5de55/1392">
+<meta name="twitter:description" content="近期笔者机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/75e774d3jw1f5q6k4n4pqj20wp089q6z.jpg">
 
 
 
@@ -239,7 +239,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-11T18:52:24+08:00" content="2016-07-11">
+            <time itemprop="dateCreated" datetime="2016-07-11T19:18:49+08:00" content="2016-07-11">
               2016-07-11
             </time>
           </span>
@@ -248,11 +248,27 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
 
           
+          
+             <span id="/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/" class="leancloud_visitors" data-flag-title="手把手教你零基础利用无线网卡搭建ad-hoc局域网">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
           
 
           
@@ -267,33 +283,33 @@
       
 
       
-        <p>放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。<br><a id="more"></a></p>
+        <p>近期笔者机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。<br><a id="more"></a></p>
 <h2 id="什么是ad-hoc？"><a href="#什么是ad-hoc？" class="headerlink" title="什么是ad-hoc？"></a><strong>什么是ad-hoc？</strong></h2><p>ad-hoc源自拉丁语，意思是”for this”，也就是一种用于特殊目的的网络，其优点是不需要依赖任何其它的网络设施，能够快速搭建起一个自主的移动网络，进行点对点的通信。所以ad-hoc多用于军事战场或抗震救灾这些场景。</p>
 <h2 id="需要哪些环境准备？"><a href="#需要哪些环境准备？" class="headerlink" title="需要哪些环境准备？"></a><strong>需要哪些环境准备？</strong></h2><p>ubuntu操作系统，两张无线网卡。</p>
 <h2 id="开始配置ad-hoc网络"><a href="#开始配置ad-hoc网络" class="headerlink" title="开始配置ad-hoc网络"></a><strong>开始配置ad-hoc网络</strong></h2><h3 id="1-在终端输入以下命令，即可看到系统当前的网络接口信息。"><a href="#1-在终端输入以下命令，即可看到系统当前的网络接口信息。" class="headerlink" title="1. 在终端输入以下命令，即可看到系统当前的网络接口信息。"></a><em>1. 在终端输入以下命令，即可看到系统当前的网络接口信息。</em></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ iwconfig</div></pre></td></tr></table></figure>
-<p><img src="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE9670b497de2ea33c504461d42ac5de55/1392" alt="图片"></p>
+<p><img src="http://ww2.sinaimg.cn/large/75e774d3jw1f5q6k4n4pqj20wp089q6z.jpg" alt="图片"></p>
 <p>第一列是网络接口的名称，笔者的笔记本自带一个网卡wlp3s0，另外两张网卡外接在电脑上，接口名称分别为wlx001478799c80和wlx0015e94b63e7。这个接口名称很重要！在后续配置接口参数时需要填写。<br>ESSID 是我们熟知的用来标识某一网络的名称。<br>Mode  是网卡当前采用的模式<br>Frequency 是网卡当前工作的频段，一般一张网卡有多个channel，每个channel的工作中心频率都不一样。<br>要配置好ad-hoc网络只需要重点关注这三个参数。<br>由于目前笔者的电脑是用内置网卡连接的网络，所以另外两张外接的网卡都显示Not-Associated。</p>
 <h3 id="2-在终端输入以下命令，查看当前系统的路由表信息。"><a href="#2-在终端输入以下命令，查看当前系统的路由表信息。" class="headerlink" title="2. 在终端输入以下命令，查看当前系统的路由表信息。"></a><em>2. 在终端输入以下命令，查看当前系统的路由表信息。</em></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ route -n</div></pre></td></tr></table></figure>
-<p><img src="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCEc2009421e9369157826b1b4179000811/1394" alt="图片"><br>路由表是电脑连接到网络的依据，无论要连接哪个IP地址，电脑都会自动根据路由表来选择最佳路径。<br>如果你需要了解关于路由表的更多知识，请移步<a href="http://bbs.51cto.com/thread-448338-1.html" target="_blank" rel="external">此处</a></p>
+<p><img src="http://ww4.sinaimg.cn/large/75e774d3jw1f5q6ks4m2tj20jq02w3zu.jpg" alt="图片"><br>路由表是电脑连接到网络的依据，无论要连接哪个IP地址，电脑都会自动根据路由表来选择最佳路径。<br>如果你需要了解关于路由表的更多知识，请移步<a href="http://bbs.51cto.com/thread-448338-1.html" target="_blank" rel="external">此处</a></p>
 <h3 id="3-在终端输入以下命令，修改网络接口配置。"><a href="#3-在终端输入以下命令，修改网络接口配置。" class="headerlink" title="3. 在终端输入以下命令，修改网络接口配置。"></a><em>3. 在终端输入以下命令，修改网络接口配置。</em></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd /etc/network </div><div class="line">$ sudo nano interfaces</div></pre></td></tr></table></figure>
-<p><img src="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCEfe9c90237f68c11ac46e41fff010677f/1387" alt="图片"></p>
-<p>一定要使用 <em>sudo</em> 命令不然在保存时会提示权限不够。<br><img src="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCEc431aa4ec877bbec1dfd1bdb2051ba91/1385" alt="图片"></p>
+<p><img src="http://ww3.sinaimg.cn/large/75e774d3jw1f5q6ifqzwhj20iy011q3e.jpg" alt="图片"></p>
+<p>一定要使用 <em>sudo</em> 命令不然在保存时会提示权限不够。<br><img src="http://ww3.sinaimg.cn/large/75e774d3jw1f5q6gv284vj20mg0a0mzn.jpg" alt="图片"></p>
 <p>配置格式：</p>
 <blockquote>
 <p>auto 网络接口名称<br>iface 网络接口名称 inet static<br>wireless-essid 随便取的一个名字<br>wireless-mode ad-hoc<br>wireless-channel 随便选的一个通道（一般就1到13里随便选个）<br>address 有效的IP地址<br>netmask 随便写个</p>
-<p>###<br>按照上述格式输入到interfaces文件中。</p>
 </blockquote>
+<p>按照上述格式输入到interfaces文件中。</p>
 <p>如果对IP地址和子网掩码的概念不是很了解，请移步 <a href="http://bbs.cfanclub.net/thread-52791-1-1.html" target="_blank" rel="external">此处</a></p>
 <p>总而言之，SSID可以将某一网络与其它任意网络区分开来，在某一SSID定义的网络下，可以任意使用IP地址来划分子网和主机。因此如果要使得两张网卡通过ad-hoc网络进行通信，它们的SSID必须设置为相同的名字。这样它们就处于同一个网络之中了。</p>
 <h3 id="4-在终端输入以下命令，重启网络使得配置生效"><a href="#4-在终端输入以下命令，重启网络使得配置生效" class="headerlink" title="4. 在终端输入以下命令，重启网络使得配置生效"></a><em>4. 在终端输入以下命令，重启网络使得配置生效</em></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd /etc/init.d</div><div class="line">$ sudo ./networking restart</div></pre></td></tr></table></figure>
-<p><img src="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCEa373796ca0740c0fbdb79f8f450edbf6/1390" alt="图片"></p>
+<p><img src="http://ww2.sinaimg.cn/large/75e774d3jw1f5q6j6i453j20k501h3zd.jpg" alt="图片"></p>
 <h3 id="5-在终端输入以下命令，查看是否配置成功。"><a href="#5-在终端输入以下命令，查看是否配置成功。" class="headerlink" title="5. 在终端输入以下命令，查看是否配置成功。"></a><em>5. 在终端输入以下命令，查看是否配置成功。</em></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ifconfig</div></pre></td></tr></table></figure>
-<p><img src="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE96d09765ade11afbad065e9099c55257/1402" alt="图片"><br>可见IP地址和子网掩码已经成功地被配置为了在interfaces文件中设置的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ iwconfig</div></pre></td></tr></table></figure></p>
-<p><img src="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE3104832f091f270bd858d62ad7200a34/1404" alt="图片"><br>可见两张外接的网卡都已经被成功地设置为了ad-hoc模式，并且工作在2.442Ghz的频道上。<br>如果仅使用一次 ./networking restart 命令很有可能网卡显示的Mode为Managed，若出现此种情况，可以再使用一次该命令。如果还是不行，可以使用 <em>sudo service network-manager restart</em> 命令。如果还不行，那就重启电脑吧！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ route -n</div></pre></td></tr></table></figure></p>
-<p><img src="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE38798a1c62004a43cae1e94093a09aeb/1400" alt="图片"><br>与之前的路由表相比，当前新增了两条路由路径。</p>
+<p><img src="http://ww3.sinaimg.cn/large/75e774d3jw1f5q6hoehdij20ie0ip7ee.jpg" alt="图片"><br>可见IP地址和子网掩码已经成功地被配置为了在interfaces文件中设置的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ iwconfig</div></pre></td></tr></table></figure></p>
+<p><img src="http://ww1.sinaimg.cn/large/75e774d3jw1f5q6m7xl85j20wq09z43a.jpg" alt="图片"><br>可见两张外接的网卡都已经被成功地设置为了ad-hoc模式，并且工作在2.442Ghz的频道上。<br>如果仅使用一次 ./networking restart 命令很有可能网卡显示的Mode为Managed，若出现此种情况，可以再使用一次该命令。如果还是不行，可以使用 <em>sudo service network-manager restart</em> 命令。如果还不行，那就重启电脑吧！<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ route -n</div></pre></td></tr></table></figure></p>
+<p><img src="http://ww4.sinaimg.cn/large/75e774d3jw1f5q6l8phqkj20m503q76f.jpg" alt="图片"><br>与之前的路由表相比，当前新增了两条路由路径。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ping 10.10.10.166</div></pre></td></tr></table></figure>
-<p><img src="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE12f0348233cfc28676585623ae1be82d/1406" alt="图片"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ping 10.10.10.167</div></pre></td></tr></table></figure></p>
-<p><img src="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE4d2a627c23a17b30ce8374b330f323bd/1408" alt=""></p>
+<p><img src="http://ww2.sinaimg.cn/large/75e774d3jw1f5q6lm1ytdj20fl02wtah.jpg" alt="图片"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ping 10.10.10.167</div></pre></td></tr></table></figure></p>
+<p><img src="http://ww1.sinaimg.cn/large/75e774d3jw1f5q6lz3de4j20fz02vwg9.jpg" alt=""></p>
 <p>当终端出现这样的回馈时，说明两张网卡已经能够进行通信啦。到此，我们已经完成了ad-hoc网络的配置。</p>
 
       
@@ -337,6 +353,10 @@
 
           
   <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/"
+           data-title="手把手教你零基础利用无线网卡搭建ad-hoc局域网" data-url="http://yoursite.com/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/">
+      </div>
     
   </div>
 
@@ -526,19 +546,147 @@
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zly325"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
   
 
 
 
 
+
+
   
   
 
   
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("VQHEJ40wJFTeFoggqfGTGSUX-gzGzoHsz", "7T0wpi6g9R1qIFsKaf06u6y9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 
