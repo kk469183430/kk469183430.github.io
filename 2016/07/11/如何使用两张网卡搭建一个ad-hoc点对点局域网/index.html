@@ -84,14 +84,12 @@
 
 
 
-<meta name="description" content="放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。
-什么是ad-hoc？ad-hoc源自拉丁语，意思是”for this”，也就是一种用于特殊目的的网络，其优点是不需要依赖任何其">
+<meta name="description" content="放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="手把手教你零基础利用无线网卡搭建ad-hoc局域网">
 <meta property="og:url" content="http://yoursite.com/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/index.html">
 <meta property="og:site_name" content="A Safe Place">
-<meta property="og:description" content="放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。
-什么是ad-hoc？ad-hoc源自拉丁语，意思是”for this”，也就是一种用于特殊目的的网络，其优点是不需要依赖任何其">
+<meta property="og:description" content="放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。">
 <meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE9670b497de2ea33c504461d42ac5de55/1392">
 <meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCEc2009421e9369157826b1b4179000811/1394">
 <meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCEfe9c90237f68c11ac46e41fff010677f/1387">
@@ -102,11 +100,10 @@
 <meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE38798a1c62004a43cae1e94093a09aeb/1400">
 <meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE12f0348233cfc28676585623ae1be82d/1406">
 <meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE4d2a627c23a17b30ce8374b330f323bd/1408">
-<meta property="og:updated_time" content="2016-07-11T10:43:46.975Z">
+<meta property="og:updated_time" content="2016-07-11T10:52:24.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="手把手教你零基础利用无线网卡搭建ad-hoc局域网">
-<meta name="twitter:description" content="放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。
-什么是ad-hoc？ad-hoc源自拉丁语，意思是”for this”，也就是一种用于特殊目的的网络，其优点是不需要依赖任何其">
+<meta name="twitter:description" content="放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。">
 <meta name="twitter:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE9670b497de2ea33c504461d42ac5de55/1392">
 
 
@@ -242,7 +239,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-11T18:43:47+08:00" content="2016-07-11">
+            <time itemprop="dateCreated" datetime="2016-07-11T18:52:24+08:00" content="2016-07-11">
               2016-07-11
             </time>
           </span>
@@ -270,7 +267,7 @@
       
 
       
-        <p>放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。</p>
+        <p>放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。<br><a id="more"></a></p>
 <h2 id="什么是ad-hoc？"><a href="#什么是ad-hoc？" class="headerlink" title="什么是ad-hoc？"></a><strong>什么是ad-hoc？</strong></h2><p>ad-hoc源自拉丁语，意思是”for this”，也就是一种用于特殊目的的网络，其优点是不需要依赖任何其它的网络设施，能够快速搭建起一个自主的移动网络，进行点对点的通信。所以ad-hoc多用于军事战场或抗震救灾这些场景。</p>
 <h2 id="需要哪些环境准备？"><a href="#需要哪些环境准备？" class="headerlink" title="需要哪些环境准备？"></a><strong>需要哪些环境准备？</strong></h2><p>ubuntu操作系统，两张无线网卡。</p>
 <h2 id="开始配置ad-hoc网络"><a href="#开始配置ad-hoc网络" class="headerlink" title="开始配置ad-hoc网络"></a><strong>开始配置ad-hoc网络</strong></h2><h3 id="1-在终端输入以下命令，即可看到系统当前的网络接口信息。"><a href="#1-在终端输入以下命令，即可看到系统当前的网络接口信息。" class="headerlink" title="1. 在终端输入以下命令，即可看到系统当前的网络接口信息。"></a><em>1. 在终端输入以下命令，即可看到系统当前的网络接口信息。</em></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ iwconfig</div></pre></td></tr></table></figure>
