@@ -64,7 +64,7 @@
     <article id="post-如何使用两张网卡搭建一个ad-hoc点对点局域网" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/" class="article-date">
-  <time datetime="2016-07-11T06:01:13.071Z" itemprop="datePublished">2016-07-11</time>
+  <time datetime="2016-07-11T08:58:50.273Z" itemprop="datePublished">2016-07-11</time>
 </a>
     
   </div>
@@ -75,11 +75,10 @@
       
         <hr>
 <p>title:手把手教你零基础利用无线网卡搭建ad-hoc局域网<br>date:2016-07-11 13:25:47<br>categories:network</p>
-<h2 id="tags-ubuntu-ad-hoc"><a href="#tags-ubuntu-ad-hoc" class="headerlink" title="tags:ubuntu ad-hoc"></a>tags:ubuntu ad-hoc</h2><p>放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。</p>
+<h2 id="tags-ubuntu-ad-hoc"><a href="#tags-ubuntu-ad-hoc" class="headerlink" title="tags:ubuntu ad-hoc"></a>tags:ubuntu ad-hoc</h2><h1 id="手把手教你零基础利用无线网卡搭建ad-hoc局域网"><a href="#手把手教你零基础利用无线网卡搭建ad-hoc局域网" class="headerlink" title="手把手教你零基础利用无线网卡搭建ad-hoc局域网"></a>手把手教你零基础利用无线网卡搭建ad-hoc局域网</h1><p>放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。</p>
 <h2 id="什么是ad-hoc？"><a href="#什么是ad-hoc？" class="headerlink" title="什么是ad-hoc？"></a><strong>什么是ad-hoc？</strong></h2><p>ad-hoc源自拉丁语，意思是”for this”，也就是一种用于特殊目的的网络，其优点是不需要依赖任何其它的网络设施，能够快速搭建起一个自主的移动网络，进行点对点的通信。所以ad-hoc多用于军事战场或抗震救灾这些场景。</p>
-<p>##<strong>需要哪些环境准备？</strong><br>ubuntu操作系统，两张无线网卡。</p>
-<p>##<strong>开始配置ad-hoc网络</strong></p>
-<h3 id="1-在终端输入以下命令，即可看到系统当前的网络接口信息。"><a href="#1-在终端输入以下命令，即可看到系统当前的网络接口信息。" class="headerlink" title="1. 在终端输入以下命令，即可看到系统当前的网络接口信息。"></a><em>1. 在终端输入以下命令，即可看到系统当前的网络接口信息。</em></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ iwconfig</div></pre></td></tr></table></figure>
+<h2 id="需要哪些环境准备？"><a href="#需要哪些环境准备？" class="headerlink" title="需要哪些环境准备？"></a><strong>需要哪些环境准备？</strong></h2><p>ubuntu操作系统，两张无线网卡。</p>
+<h2 id="开始配置ad-hoc网络"><a href="#开始配置ad-hoc网络" class="headerlink" title="开始配置ad-hoc网络"></a><strong>开始配置ad-hoc网络</strong></h2><h3 id="1-在终端输入以下命令，即可看到系统当前的网络接口信息。"><a href="#1-在终端输入以下命令，即可看到系统当前的网络接口信息。" class="headerlink" title="1. 在终端输入以下命令，即可看到系统当前的网络接口信息。"></a><em>1. 在终端输入以下命令，即可看到系统当前的网络接口信息。</em></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ iwconfig</div></pre></td></tr></table></figure>
 <p><img src="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE9670b497de2ea33c504461d42ac5de55/1392" alt="图片"></p>
 <p>第一列是网络接口的名称，笔者的笔记本自带一个网卡wlp3s0，另外两张网卡外接在电脑上，接口名称分别为wlx001478799c80和wlx0015e94b63e7。这个接口名称很重要！在后续配置接口参数时需要填写。<br>ESSID 是我们熟知的用来标识某一网络的名称。<br>Mode  是网卡当前采用的模式<br>Frequency 是网卡当前工作的频段，一般一张网卡有多个channel，每个channel的工作中心频率都不一样。<br>要配置好ad-hoc网络只需要重点关注这三个参数。<br>由于目前笔者的电脑是用内置网卡连接的网络，所以另外两张外接的网卡都显示Not-Associated。</p>
 <h3 id="2-在终端输入以下命令，查看当前系统的路由表信息。"><a href="#2-在终端输入以下命令，查看当前系统的路由表信息。" class="headerlink" title="2. 在终端输入以下命令，查看当前系统的路由表信息。"></a><em>2. 在终端输入以下命令，查看当前系统的路由表信息。</em></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ route -n</div></pre></td></tr></table></figure>
@@ -90,7 +89,7 @@
 <p>配置格式：</p>
 <blockquote>
 <p>auto 网络接口名称<br>iface 网络接口名称 inet static<br>wireless-essid 随便取的一个名字<br>wireless-mode ad-hoc<br>wireless-channel 随便选的一个通道（一般就1到13里随便选个）<br>address 有效的IP地址<br>netmask 随便写个</p>
-<p>#####<br>按照上述格式输入到interfaces文件中。</p>
+<p>###<br>按照上述格式输入到interfaces文件中。</p>
 </blockquote>
 <p>如果对IP地址和子网掩码的概念不是很了解，请移步 <a href="http://bbs.cfanclub.net/thread-52791-1-1.html" target="_blank" rel="external">此处</a></p>
 <p>总而言之，SSID可以将某一网络与其它任意网络区分开来，在某一SSID定义的网络下，可以任意使用IP地址来划分子网和主机。因此如果要使得两张网卡通过ad-hoc网络进行通信，它们的SSID必须设置为相同的名字。这样它们就处于同一个网络之中了。</p>
@@ -108,52 +107,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/" data-id="ciqhmf5p00001bgwiejgbapwk" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/10/hello-world/" class="article-date">
-  <time datetime="2016-07-10T11:26:43.708Z" itemprop="datePublished">2016-07-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/10/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/10/hello-world/" data-id="ciqhmf5ot0000bgwi4ceox4yr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/" data-id="ciqhsrytk0000yewitrunrof2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -194,10 +148,6 @@
         
           <li>
             <a href="/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/10/hello-world/">Hello World</a>
           </li>
         
       </ul>
