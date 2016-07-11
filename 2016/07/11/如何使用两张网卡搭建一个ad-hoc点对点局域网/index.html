@@ -1,18 +1,97 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+<!doctype html>
+
+
+
   
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title:手把手教你零基础利用无线网卡搭建ad-hoc局域网date:2016-07-11 13:25:47categories:network
-tags:ubuntu ad-hoc手把手教你零基础利用无线网卡搭建ad-hoc局域网放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第">
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。
+什么是ad-hoc？ad-hoc源自拉丁语，意思是”for this”，也就是一种用于特殊目的的网络，其优点是不需要依赖任何其">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="手把手教你零基础利用无线网卡搭建ad-hoc局域网">
 <meta property="og:url" content="http://yoursite.com/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="title:手把手教你零基础利用无线网卡搭建ad-hoc局域网date:2016-07-11 13:25:47categories:network
-tags:ubuntu ad-hoc手把手教你零基础利用无线网卡搭建ad-hoc局域网放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第">
+<meta property="og:site_name" content="A Safe Place">
+<meta property="og:description" content="放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。
+什么是ad-hoc？ad-hoc源自拉丁语，意思是”for this”，也就是一种用于特殊目的的网络，其优点是不需要依赖任何其">
 <meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE9670b497de2ea33c504461d42ac5de55/1392">
 <meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCEc2009421e9369157826b1b4179000811/1394">
 <meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCEfe9c90237f68c11ac46e41fff010677f/1387">
@@ -23,75 +102,175 @@ tags:ubuntu ad-hoc手把手教你零基础利用无线网卡搭建ad-hoc局域�
 <meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE38798a1c62004a43cae1e94093a09aeb/1400">
 <meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE12f0348233cfc28676585623ae1be82d/1406">
 <meta property="og:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE4d2a627c23a17b30ce8374b330f323bd/1408">
-<meta property="og:updated_time" content="2016-07-11T08:58:50.213Z">
+<meta property="og:updated_time" content="2016-07-11T10:43:46.975Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="title:手把手教你零基础利用无线网卡搭建ad-hoc局域网date:2016-07-11 13:25:47categories:network
-tags:ubuntu ad-hoc手把手教你零基础利用无线网卡搭建ad-hoc局域网放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第">
+<meta name="twitter:title" content="手把手教你零基础利用无线网卡搭建ad-hoc局域网">
+<meta name="twitter:description" content="放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。
+什么是ad-hoc？ad-hoc源自拉丁语，意思是”for this”，也就是一种用于特殊目的的网络，其优点是不需要依赖任何其">
 <meta name="twitter:image" content="http://note.youdao.com/yws/public/resource/7859a2bff4129c86390f63fa0df49ba5/xmlnote/WEBRESOURCE9670b497de2ea33c504461d42ac5de55/1392">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  
 
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/"/>
+
+  <title> 手把手教你零基础利用无线网卡搭建ad-hoc局域网 | A Safe Place </title>
 </head>
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">A Safe Place</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
   </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-如何使用两张网卡搭建一个ad-hoc点对点局域网" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/" class="article-date">
-  <time datetime="2016-07-11T08:58:50.273Z" itemprop="datePublished">2016-07-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
       
-        <hr>
-<p>title:手把手教你零基础利用无线网卡搭建ad-hoc局域网<br>date:2016-07-11 13:25:47<br>categories:network</p>
-<h2 id="tags-ubuntu-ad-hoc"><a href="#tags-ubuntu-ad-hoc" class="headerlink" title="tags:ubuntu ad-hoc"></a>tags:ubuntu ad-hoc</h2><h1 id="手把手教你零基础利用无线网卡搭建ad-hoc局域网"><a href="#手把手教你零基础利用无线网卡搭建ad-hoc局域网" class="headerlink" title="手把手教你零基础利用无线网卡搭建ad-hoc局域网"></a>手把手教你零基础利用无线网卡搭建ad-hoc局域网</h1><p>放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。</p>
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                手把手教你零基础利用无线网卡搭建ad-hoc局域网
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-11T18:43:47+08:00" content="2016-07-11">
+              2016-07-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>放暑假了,笔者闲来无事,机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。</p>
 <h2 id="什么是ad-hoc？"><a href="#什么是ad-hoc？" class="headerlink" title="什么是ad-hoc？"></a><strong>什么是ad-hoc？</strong></h2><p>ad-hoc源自拉丁语，意思是”for this”，也就是一种用于特殊目的的网络，其优点是不需要依赖任何其它的网络设施，能够快速搭建起一个自主的移动网络，进行点对点的通信。所以ad-hoc多用于军事战场或抗震救灾这些场景。</p>
 <h2 id="需要哪些环境准备？"><a href="#需要哪些环境准备？" class="headerlink" title="需要哪些环境准备？"></a><strong>需要哪些环境准备？</strong></h2><p>ubuntu操作系统，两张无线网卡。</p>
 <h2 id="开始配置ad-hoc网络"><a href="#开始配置ad-hoc网络" class="headerlink" title="开始配置ad-hoc网络"></a><strong>开始配置ad-hoc网络</strong></h2><h3 id="1-在终端输入以下命令，即可看到系统当前的网络接口信息。"><a href="#1-在终端输入以下命令，即可看到系统当前的网络接口信息。" class="headerlink" title="1. 在终端输入以下命令，即可看到系统当前的网络接口信息。"></a><em>1. 在终端输入以下命令，即可看到系统当前的网络接口信息。</em></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ iwconfig</div></pre></td></tr></table></figure>
@@ -122,85 +301,249 @@ tags:ubuntu ad-hoc手把手教你零基础利用无线网卡搭建ad-hoc局域�
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/" data-id="ciqhsrytk0000yewitrunrof2" class="article-share-link">Share</a>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
       
       
     </footer>
-  </div>
-  
-    
-  
-</article>
+  </article>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
 
-  
-    
 
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li></ul>
+    <div class="post-spread">
+      
     </div>
   </div>
 
 
-  
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
+  </div>
+
+
+        </div>
         
-          <li>
-            <a href="/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/">(no title)</a>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
           </li>
-        
-      </ul>
-    </div>
-  </div>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-  
-</aside>
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/stark.jpg"
+               alt="Kaka" />
+          <p class="site-author-name" itemprop="name">Kaka</p>
+          <p class="site-description motion-element" itemprop="description">If you do not make a choice, the choice will be making you.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是ad-hoc？"><span class="nav-number">1.</span> <span class="nav-text">什么是ad-hoc？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需要哪些环境准备？"><span class="nav-number">2.</span> <span class="nav-text">需要哪些环境准备？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始配置ad-hoc网络"><span class="nav-number">3.</span> <span class="nav-text">开始配置ad-hoc网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-在终端输入以下命令，即可看到系统当前的网络接口信息。"><span class="nav-number">3.1.</span> <span class="nav-text">1. 在终端输入以下命令，即可看到系统当前的网络接口信息。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在终端输入以下命令，查看当前系统的路由表信息。"><span class="nav-number">3.2.</span> <span class="nav-text">2. 在终端输入以下命令，查看当前系统的路由表信息。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在终端输入以下命令，修改网络接口配置。"><span class="nav-number">3.3.</span> <span class="nav-text">3. 在终端输入以下命令，修改网络接口配置。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-在终端输入以下命令，重启网络使得配置生效"><span class="nav-number">3.4.</span> <span class="nav-text">4. 在终端输入以下命令，重启网络使得配置生效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-在终端输入以下命令，查看是否配置成功。"><span class="nav-number">3.5.</span> <span class="nav-text">5. 在终端输入以下命令，查看是否配置成功。</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
         
       </div>
-      <footer id="footer">
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kaka</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
     </div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+
   
-    <a href="/" class="mobile-nav-link">Home</a>
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+
+
+
   
-</nav>
-    
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+  
 
 
-<script src="/js/script.js"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
 
-  </div>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
