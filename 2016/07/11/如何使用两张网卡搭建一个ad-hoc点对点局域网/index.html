@@ -1,289 +1,93 @@
-<!doctype html>
 
-
-
-  
-
-
-<html class="theme-next mist use-motion">
+ <!DOCTYPE HTML>
+<html lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta charset="UTF-8">
   
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
+    <title>手把手教你零基础利用无线网卡搭建ad-hoc局域网 | A Safe Place</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Kaka">
+    
+    <meta name="description" content="近期笔者机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。">
     
     
-  
-
-  
-
-  
-
-  
-
-  
-
-  
     
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
-
-
-
-
-
-
-<meta name="description" content="近期笔者机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="手把手教你零基础利用无线网卡搭建ad-hoc局域网">
-<meta property="og:url" content="http://yoursite.com/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/index.html">
-<meta property="og:site_name" content="A Safe Place">
-<meta property="og:description" content="近期笔者机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/75e774d3jw1f5q6k4n4pqj20wp089q6z.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/75e774d3jw1f5q6ks4m2tj20jq02w3zu.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/75e774d3jw1f5q6ifqzwhj20iy011q3e.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/75e774d3jw1f5q6gv284vj20mg0a0mzn.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/75e774d3jw1f5q6j6i453j20k501h3zd.jpg">
-<meta property="og:image" content="http://ww3.sinaimg.cn/large/75e774d3jw1f5q6hoehdij20ie0ip7ee.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/75e774d3jw1f5q6m7xl85j20wq09z43a.jpg">
-<meta property="og:image" content="http://ww4.sinaimg.cn/large/75e774d3jw1f5q6l8phqkj20m503q76f.jpg">
-<meta property="og:image" content="http://ww2.sinaimg.cn/large/75e774d3jw1f5q6lm1ytdj20fl02wtah.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/75e774d3jw1f5q6lz3de4j20fz02vwg9.jpg">
-<meta property="og:updated_time" content="2016-07-11T11:18:49.484Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="手把手教你零基础利用无线网卡搭建ad-hoc局域网">
-<meta name="twitter:description" content="近期笔者机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。">
-<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/75e774d3jw1f5q6k4n4pqj20wp089q6z.jpg">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"always"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: 0,
-      author: '博主'
-    }
-  };
-</script>
-
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/"/>
-
-  <title> 手把手教你零基础利用无线网卡搭建ad-hoc局域网 | A Safe Place </title>
+    <link rel="alternate" href="/atom.xml" title="A Safe Place" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">A Safe Place</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle"></p>
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="A Safe Place" title="A Safe Place"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="A Safe Place">A Safe Place</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
 </div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
- </div>
     </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
+      <a href="/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/" title="手把手教你零基础利用无线网卡搭建ad-hoc局域网" itemprop="url">手把手教你零基础利用无线网卡搭建ad-hoc局域网</a>
+  </h1>
+  <p class="article-author">By
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                手把手教你零基础利用无线网卡搭建ad-hoc局域网
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-11T04:18:49-07:00" content="2016-07-11">
-              2016-07-11
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/" class="leancloud_visitors" data-flag-title="手把手教你零基础利用无线网卡搭建ad-hoc局域网">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
+      <a href="http://yoursite.com" title="Kaka">Kaka</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-07-11T11:18:49.540Z" itemprop="datePublished">2016-07-11</time>
+    Updated:<time datetime="2016-07-11T11:18:49.484Z" itemprop="dateModified">2016-07-11</time>
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>近期笔者机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。<br><a id="more"></a></p>
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是ad-hoc？"><span class="toc-number">1.</span> <span class="toc-text">什么是ad-hoc？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需要哪些环境准备？"><span class="toc-number">2.</span> <span class="toc-text">需要哪些环境准备？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始配置ad-hoc网络"><span class="toc-number">3.</span> <span class="toc-text">开始配置ad-hoc网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-在终端输入以下命令，即可看到系统当前的网络接口信息。"><span class="toc-number">3.1.</span> <span class="toc-text">1. 在终端输入以下命令，即可看到系统当前的网络接口信息。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-在终端输入以下命令，查看当前系统的路由表信息。"><span class="toc-number">3.2.</span> <span class="toc-text">2. 在终端输入以下命令，查看当前系统的路由表信息。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-在终端输入以下命令，修改网络接口配置。"><span class="toc-number">3.3.</span> <span class="toc-text">3. 在终端输入以下命令，修改网络接口配置。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-在终端输入以下命令，重启网络使得配置生效"><span class="toc-number">3.4.</span> <span class="toc-text">4. 在终端输入以下命令，重启网络使得配置生效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-在终端输入以下命令，查看是否配置成功。"><span class="toc-number">3.5.</span> <span class="toc-text">5. 在终端输入以下命令，查看是否配置成功。</span></a></li></ol></li></ol>
+		</div>
+		
+		<p>近期笔者机缘巧合第一次接触到了ubuntu 16.04,被其简洁的桌面风格和逼格甚高的终端环境所深深吸引，于是开启了linux学习之旅。笔者学习的第一项就是将两张无线网卡配置成ad-hoc模式，从而实现在无网情况下两台电脑通过无线网卡进行通信和文件的传送。<br><a id="more"></a></p>
 <h2 id="什么是ad-hoc？"><a href="#什么是ad-hoc？" class="headerlink" title="什么是ad-hoc？"></a><strong>什么是ad-hoc？</strong></h2><p>ad-hoc源自拉丁语，意思是”for this”，也就是一种用于特殊目的的网络，其优点是不需要依赖任何其它的网络设施，能够快速搭建起一个自主的移动网络，进行点对点的通信。所以ad-hoc多用于军事战场或抗震救灾这些场景。</p>
 <h2 id="需要哪些环境准备？"><a href="#需要哪些环境准备？" class="headerlink" title="需要哪些环境准备？"></a><strong>需要哪些环境准备？</strong></h2><p>ubuntu操作系统，两张无线网卡。</p>
 <h2 id="开始配置ad-hoc网络"><a href="#开始配置ad-hoc网络" class="headerlink" title="开始配置ad-hoc网络"></a><strong>开始配置ad-hoc网络</strong></h2><h3 id="1-在终端输入以下命令，即可看到系统当前的网络接口信息。"><a href="#1-在终端输入以下命令，即可看到系统当前的网络接口信息。" class="headerlink" title="1. 在终端输入以下命令，即可看到系统当前的网络接口信息。"></a><em>1. 在终端输入以下命令，即可看到系统当前的网络接口信息。</em></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ iwconfig</div></pre></td></tr></table></figure>
@@ -311,181 +115,170 @@
 <p><img src="http://ww2.sinaimg.cn/large/75e774d3jw1f5q6lm1ytdj20fl02wtah.jpg" alt="图片"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ping 10.10.10.167</div></pre></td></tr></table></figure></p>
 <p><img src="http://ww1.sinaimg.cn/large/75e774d3jw1f5q6lz3de4j20fz02vwg9.jpg" alt=""></p>
 <p>当终端出现这样的回馈时，说明两张网卡已经能够进行通信啦。到此，我们已经完成了ad-hoc网络的配置。</p>
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/"
-           data-title="手把手教你零基础利用无线网卡搭建ad-hoc局域网" data-url="http://yoursite.com/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/">
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2016/07/11/如何使用两张网卡搭建一个ad-hoc点对点局域网/" data-title="手把手教你零基础利用无线网卡搭建ad-hoc局域网 | A Safe Place" data-tsina="null" class="share clearfix">
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/uploads/stark.jpg"
-               alt="Kaka" />
-          <p class="site-author-name" itemprop="name">Kaka</p>
-          <p class="site-description motion-element" itemprop="description">If you do not make a choice, the choice will be making you.</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/">
-              <span class="site-state-item-count">1</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是ad-hoc？"><span class="nav-number">1.</span> <span class="nav-text">什么是ad-hoc？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需要哪些环境准备？"><span class="nav-number">2.</span> <span class="nav-text">需要哪些环境准备？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始配置ad-hoc网络"><span class="nav-number">3.</span> <span class="nav-text">开始配置ad-hoc网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-在终端输入以下命令，即可看到系统当前的网络接口信息。"><span class="nav-number">3.1.</span> <span class="nav-text">1. 在终端输入以下命令，即可看到系统当前的网络接口信息。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在终端输入以下命令，查看当前系统的路由表信息。"><span class="nav-number">3.2.</span> <span class="nav-text">2. 在终端输入以下命令，查看当前系统的路由表信息。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在终端输入以下命令，修改网络接口配置。"><span class="nav-number">3.3.</span> <span class="nav-text">3. 在终端输入以下命令，修改网络接口配置。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-在终端输入以下命令，重启网络使得配置生效"><span class="nav-number">3.4.</span> <span class="nav-text">4. 在终端输入以下命令，重启网络使得配置生效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-在终端输入以下命令，查看是否配置成功。"><span class="nav-number">3.5.</span> <span class="nav-text">5. 在终端输入以下命令，查看是否配置成功。</span></a></li></ol></li></ol></div>
-            
-          </div>
-        </section>
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Kaka</span>
 </div>
+</footer>   	       
+	</article>
+	
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是ad-hoc？"><span class="toc-number">1.</span> <span class="toc-text">什么是ad-hoc？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#需要哪些环境准备？"><span class="toc-number">2.</span> <span class="toc-text">需要哪些环境准备？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开始配置ad-hoc网络"><span class="toc-number">3.</span> <span class="toc-text">开始配置ad-hoc网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-在终端输入以下命令，即可看到系统当前的网络接口信息。"><span class="toc-number">3.1.</span> <span class="toc-text">1. 在终端输入以下命令，即可看到系统当前的网络接口信息。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-在终端输入以下命令，查看当前系统的路由表信息。"><span class="toc-number">3.2.</span> <span class="toc-text">2. 在终端输入以下命令，查看当前系统的路由表信息。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-在终端输入以下命令，修改网络接口配置。"><span class="toc-number">3.3.</span> <span class="toc-text">3. 在终端输入以下命令，修改网络接口配置。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-在终端输入以下命令，重启网络使得配置生效"><span class="toc-number">3.4.</span> <span class="toc-text">4. 在终端输入以下命令，重启网络使得配置生效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-在终端输入以下命令，查看是否配置成功。"><span class="toc-number">3.5.</span> <span class="toc-text">5. 在终端输入以下命令，查看是否配置成功。</span></a></li></ol></li></ol>
   </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
 
   
+
+  
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://yoursite.com" target="_blank" title="Kaka">Kaka</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
 <script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
 </script>
 
 
@@ -493,202 +286,5 @@
 
 
 
-
-
-
-  
-
-
-
-  
-  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"zly325"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
-
-
-
-
-
-
-  
-  
-
-  
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("VQHEJ40wJFTeFoggqfGTGSUX-gzGzoHsz", "7T0wpi6g9R1qIFsKaf06u6y9");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-</body>
+  </body>
 </html>
